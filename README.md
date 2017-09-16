@@ -2,4 +2,4 @@
 Forsyth Makerspace Mascot
 
 
-This is our fist commit!
+Hello.
