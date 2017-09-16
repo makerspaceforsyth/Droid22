@@ -2,4 +2,4 @@
 Forsyth Makerspace Mascot
 
 
-Hello.
+How are you?
