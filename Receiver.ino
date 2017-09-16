@@ -32,17 +32,13 @@ void loop()
   Serial.println(DATA);
   }
 }
-  /*
   str1 = DATA.substring(1,2);
   str2 = DATA.substring(3,4);
   str3 = DATA.substring(5,7);
-
   SP1 = str1.toInt();
   ST1 = str2.toInt();
-
   SP1 = map(SP1, 0, 9, 0, 180);
   ST1 = map(ST1, 0, 9, 0, 180);
-
   Serial.print("Panning Servo is at ");
   Serial.print(SP1);
   Serial.println(" Degrees.");
@@ -56,7 +52,6 @@ void loop()
     digitalWrite(4, HIGH);
     digitalWrite(7, HIGH);
     digitalWrite(8, HIGH);
-
     Serial.println("Robot is Moving Forward.");
   }
   else if (str3 == "FL")
@@ -65,7 +60,6 @@ void loop()
     digitalWrite(4,HIGH);
     digitalWrite(7,HIGH);
     digitalWrite(8,HIGH);
-
     Serial.println("Robot is Turning Left and Moving Forward.");
   }
   else if (str3 == "FR")
@@ -74,7 +68,6 @@ void loop()
     digitalWrite(4,HIGH);
     digitalWrite(7,HIGH);
     digitalWrite(8,HIGH);
-
     Serial.println("Robot is Turning Right and Moving Forward.");
     
   }
@@ -84,7 +77,6 @@ void loop()
     digitalWrite(4,HIGH);
     digitalWrite(7,HIGH);
     digitalWrite(8,HIGH);
-
     Serial.println("Robot is Moving Backward.");
   }
   else if (str3 == "BL")
@@ -93,7 +85,6 @@ void loop()
     digitalWrite(4,HIGH);
     digitalWrite(7,HIGH);
     digitalWrite(8,HIGH);
-
     Serial.println("Robot is Turning Left and Moving Backward.");
   }
   else if (str3 == "BR")
@@ -102,7 +93,6 @@ void loop()
     digitalWrite(4,HIGH);
     digitalWrite(7,HIGH);
     digitalWrite(8,HIGH);
-
     Serial.println("Robot is Turning Right and Moving Backward.");
   }
   else if (str3 == "NN")
@@ -111,7 +101,6 @@ void loop()
     digitalWrite(4,HIGH);
     digitalWrite(7,HIGH);
     digitalWrite(8,HIGH);
-
     Serial.println("Robot is Still.");
   }
   
@@ -120,4 +109,4 @@ void loop()
   
   }
 }
-*/
+
