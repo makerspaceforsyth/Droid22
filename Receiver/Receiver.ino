@@ -5,7 +5,7 @@
 String DATA;
 String PanningServo;
 String TiltingServo;
-String Opcode;
+String opCode;
 
 int SP1;
 int ST1;
@@ -52,7 +52,7 @@ void ParseData()
 
 void Movement () 
 {
-  if (Opcode.substring(0) == "F")
+  if (opCode.substring(0) == "F")
   {
     digitalWrite(2, HIGH);
     digitalWrite(4, HIGH);
@@ -61,7 +61,7 @@ void Movement ()
     Serial.println("Robot is Moving Forward.");
     Serial.println("");
   }
-  else if (Opcode.substring(0) == "B")
+  else if (opCode.substring(0) == "B")
   {
     digitalWrite(2,HIGH);
     digitalWrite(4,LOW);
@@ -70,7 +70,7 @@ void Movement ()
     Serial.println("Robot is Moving Backward.");
     Serial.println("");
   }
-  else if (Opcode == "L")
+  else if (opCode == "L")
   {
     digitalWrite(2,LOW);
     digitalWrite(4,LOW);
@@ -79,7 +79,7 @@ void Movement ()
     Serial.println("Robot is Turning Left.");
     Serial.println("");
   }
-  else if (Opcode == "R")
+  else if (opCode == "R")
   {
     digitalWrite(2,HIGH);
     digitalWrite(4,HIGH);
