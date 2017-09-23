@@ -22,10 +22,10 @@ int LR1 = analogRead(A3); //Left/Right
 
 opCode = generateOpCode(FB1, LR1);
 
-servoHand = map(SP1, 0, 1024, 0, 9);
+servoHead = map(SP1, 0, 1024, 0, 9);
 servoTilt = map(ST1, 0, 1024, 0, 9);
  
-DATA = "<" + servoHand + "," + servoTilt + "," + opCode + ">";
+DATA = "<" + servoHead + "," + servoTilt + "," + opCode + ">";
 
 Serial.println(DATA);
 
