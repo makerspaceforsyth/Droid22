@@ -1,3 +1,4 @@
+//Version 1.1
 // Data is sent in a <1,2,3,4,5,6> format
 // And then broken down into substrings and converted to integers
 
@@ -30,11 +31,11 @@ void loop()
   {
   DATA = (Serial.readString());
   Serial.println(DATA);
-  }
-}
+  
+
   str1 = DATA.substring(1,2);
   str2 = DATA.substring(3,4);
-  str3 = DATA.substring(5,7);
+  str3 = DATA.substring(5,6);
   SP1 = str1.toInt();
   ST1 = str2.toInt();
   SP1 = map(SP1, 0, 9, 0, 180);
@@ -46,7 +47,7 @@ void loop()
   Serial.print(ST1);
   Serial.println(" Degrees.");
   
-  if (str3 == "FF")
+  if (str3.substring(0) == "F")
   {
     digitalWrite(2, HIGH);
     digitalWrite(4, HIGH);
@@ -54,49 +55,32 @@ void loop()
     digitalWrite(8, HIGH);
     Serial.println("Robot is Moving Forward.");
   }
-  else if (str3 == "FL")
+  else if (str3.substring(0) == "B")
   {
     digitalWrite(2,HIGH);
-    digitalWrite(4,HIGH);
+    digitalWrite(4,LOW);
     digitalWrite(7,HIGH);
-    digitalWrite(8,HIGH);
-    Serial.println("Robot is Turning Left and Moving Forward.");
-  }
-  else if (str3 == "FR")
-  {
-    digitalWrite(2,HIGH);
-    digitalWrite(4,HIGH);
-    digitalWrite(7,HIGH);
-    digitalWrite(8,HIGH);
-    Serial.println("Robot is Turning Right and Moving Forward.");
-    
-  }
-  else if (str3 == "BB")
-  {
-    digitalWrite(2,HIGH);
-    digitalWrite(4,HIGH);
-    digitalWrite(7,HIGH);
-    digitalWrite(8,HIGH);
+    digitalWrite(8,LOW);
     Serial.println("Robot is Moving Backward.");
   }
-  else if (str3 == "BL")
+  else if (str3 == "L")
+  {
+    digitalWrite(2,LOW);
+    digitalWrite(4,LOW);
+    digitalWrite(7,HIGH);
+    digitalWrite(8,HIGH);
+    Serial.println("Robot is Turning Left.");
+    
+  }
+  else if (str3 == "R")
   {
     digitalWrite(2,HIGH);
     digitalWrite(4,HIGH);
-    digitalWrite(7,HIGH);
-    digitalWrite(8,HIGH);
-    Serial.println("Robot is Turning Left and Moving Backward.");
+    digitalWrite(7,LOW);
+    digitalWrite(8,LOW);
+    Serial.println("Robot is Turning Right.");
   }
-  else if (str3 == "BR")
-  {
-    digitalWrite(2,HIGH);
-    digitalWrite(4,HIGH);
-    digitalWrite(7,HIGH);
-    digitalWrite(8,HIGH);
-    Serial.println("Robot is Turning Right and Moving Backward.");
-  }
-  else if (str3 == "NN")
-  {
+  else {
     digitalWrite(2,HIGH);
     digitalWrite(4,HIGH);
     digitalWrite(7,HIGH);
@@ -109,4 +93,3 @@ void loop()
   
   }
 }
-
