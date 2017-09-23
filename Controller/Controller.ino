@@ -3,11 +3,9 @@
 //Control scketch for Maskerspace Mascot
 
 String DATA;
-String str1;
-String str2;
-String str3;
-String str4;
-String str6;
+String servoHand;
+String servoTilt;
+String opCode;
 
 void setup() 
 {
@@ -22,17 +20,12 @@ int ST1 = analogRead(A1); //Tilting Servo
 int FB1 = analogRead(A2); //Forward/Backward
 int LR1 = analogRead(A3); //Left/Right
 
-String str5 = generateOpCode(FB1, LR1);
+opCode = generateOpCode(FB1, LR1);
 
-
-str3 = map(SP1, 0, 1024, 0, 9);
-str4 = map(ST1, 0, 1024, 0, 9);
+servoHand = map(SP1, 0, 1024, 0, 9);
+servoTilt = map(ST1, 0, 1024, 0, 9);
  
-str1 = "<";
-str2 = ",";
-String str11 = ">";
-
-DATA = str1 + str3 + str2 + str4 + str2 + str5 + str11;
+DATA = "<" + servoHand + "," + servoTilt + "," + opCode + ">";
 
 Serial.println(DATA);
 
