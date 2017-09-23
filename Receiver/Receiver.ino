@@ -3,9 +3,9 @@
 // And then broken down into substrings and converted to integers
 
 String DATA;
-String str1;
-String str2;
-String str3;
+String PanningServo;
+String TiltingServo;
+String Opcode;
 
 int SP1;
 int ST1;
@@ -28,57 +28,65 @@ Serial.setTimeout(500);
 void loop() 
 {
   if (Serial.available() > 0)
-  {
-  DATA = (Serial.readString());
-  Serial.println(DATA);
+  { 
   
+  ParseData();
+  
+  Movement();
+  
+  }
+}
 
-  str1 = DATA.substring(1,2);
-  str2 = DATA.substring(3,4);
-  str3 = DATA.substring(5,6);
-  SP1 = str1.toInt();
-  ST1 = str2.toInt();
+void ParseData() 
+{
+  DATA = (Serial.readString());
+  Serial.print(DATA);
+  PanningServo = DATA.substring(1,2);
+  TiltingServo = DATA.substring(3,4);
+  Opcode = DATA.substring(5,6);
+  SP1 = PanningServo.toInt();
+  ST1 = TiltingServo.toInt();
   SP1 = map(SP1, 0, 9, 0, 180);
-  ST1 = map(ST1, 0, 9, 0, 180);
-  Serial.print("Panning Servo is at ");
-  Serial.print(SP1);
-  Serial.println(" Degrees.");
-  Serial.print("Tilting Servo is at ");
-  Serial.print(ST1);
-  Serial.println(" Degrees.");
-  
-  if (str3.substring(0) == "F")
+  ST1 = map(ST1, 0, 9, 0, 180);  
+}
+
+void Movement () 
+{
+  if (Opcode.substring(0) == "F")
   {
     digitalWrite(2, HIGH);
     digitalWrite(4, HIGH);
     digitalWrite(7, HIGH);
     digitalWrite(8, HIGH);
     Serial.println("Robot is Moving Forward.");
+    Serial.println("");
   }
-  else if (str3.substring(0) == "B")
+  else if (Opcode.substring(0) == "B")
   {
     digitalWrite(2,HIGH);
     digitalWrite(4,LOW);
     digitalWrite(7,HIGH);
     digitalWrite(8,LOW);
     Serial.println("Robot is Moving Backward.");
+    Serial.println("");
   }
-  else if (str3 == "L")
+  else if (Opcode == "L")
   {
     digitalWrite(2,LOW);
     digitalWrite(4,LOW);
     digitalWrite(7,HIGH);
     digitalWrite(8,HIGH);
     Serial.println("Robot is Turning Left.");
-    
+    Serial.println("");
   }
-  else if (str3 == "R")
+  else if (Opcode == "R")
   {
     digitalWrite(2,HIGH);
     digitalWrite(4,HIGH);
     digitalWrite(7,LOW);
     digitalWrite(8,LOW);
     Serial.println("Robot is Turning Right.");
+    Serial.println("");
   }
   else {
     digitalWrite(2,HIGH);
@@ -86,10 +94,10 @@ void loop()
     digitalWrite(7,HIGH);
     digitalWrite(8,HIGH);
     Serial.println("Robot is Still.");
+    Serial.println("");
   }
-  
+   
   PanServo.write(90);
   TiltServo.write(90);
-  
-  }
-}
+ 
+ }
