@@ -3,7 +3,7 @@
 //Control scketch for Maskerspace Mascot
 
 String DATA;
-String servoHand;
+String servoHead;
 String servoTilt;
 String opCode;
 
