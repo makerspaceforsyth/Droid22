@@ -1,5 +1,5 @@
-//Version 1.1
-// Data is sent in a <1,2,3,4,5,6> format
+// Version 1.1
+// Data is sent in a <#,#,F> format
 // And then broken down into substrings and converted to integers
 
 String DATA;
