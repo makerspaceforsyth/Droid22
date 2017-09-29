@@ -1,4 +1,4 @@
-// Version 1.1
+// Version 1.2
 // Data is sent in a <###,###,F> format
 // And then broken down into substrings and converted to integers
 
@@ -10,6 +10,7 @@ String opCode;
 int SP1;
 int ST1;
 
+
 #include <Servo.h>;
 
 Servo PanServo, TiltServo;
@@ -17,16 +18,17 @@ Servo PanServo, TiltServo;
 void setup() 
 {
 
-PanServo.attach(9);
-TiltServo.attach(10);
+  PanServo.attach(9);
+  TiltServo.attach(10);
+  
+  Serial.begin(9600);
+  Serial.setTimeout(500);
+  
+  pinMode(2,OUTPUT);  //Left wheel
+  pinMode(4,OUTPUT);  //Left wheel
+  pinMode(7,OUTPUT);  //Right wheel
+  pinMode(8,OUTPUT);  //Right wheel
 
-Serial.begin(9600);
-Serial.setTimeout(500);
-
-pinMode(2,OUTPUT);
-pinMode(4,OUTPUT);
-pinMode(7,OUTPUT);
-pinMode(8,OUTPUT);
 }
 
 void loop() 
@@ -53,6 +55,7 @@ void ParseData()
   SP1 = (SP1 - 100);
   ST1 = (ST1 - 100);
 }
+
 
 void Movement () 
 {
