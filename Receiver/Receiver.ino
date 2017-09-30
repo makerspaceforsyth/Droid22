@@ -33,7 +33,8 @@ void setup()
   pinMode(LeftWheelSpeedControl, OUTPUT);  //Left wheel
   pinMode(RightWheelPowerControl, OUTPUT);  //Right wheel
   pinMode(RightWheelSpeedControl, OUTPUT);  //Right wheel
-
+  pinMode(TorsoFan, OUTPUT);  // Torso Fan
+  
   digitalWrite(TorsoFan, HIGH);
 
 }
