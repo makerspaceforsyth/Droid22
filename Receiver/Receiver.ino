@@ -1,5 +1,5 @@
 // Version 1.1
-// Data is sent in a <#,#,F> format
+// Data is sent in a <###,###,F> format
 // And then broken down into substrings and converted to integers
 
 String DATA;
@@ -21,8 +21,12 @@ PanServo.attach(9);
 TiltServo.attach(10);
 
 Serial.begin(9600);
-
 Serial.setTimeout(500);
+
+pinMode(2,OUTPUT);
+pinMode(4,OUTPUT);
+pinMode(7,OUTPUT);
+pinMode(8,OUTPUT);
 }
 
 void loop() 
@@ -41,13 +45,13 @@ void ParseData()
 {
   DATA = (Serial.readString());
   Serial.print(DATA);
-  PanningServo = DATA.substring(1,2);
-  TiltingServo = DATA.substring(3,4);
-  Opcode = DATA.substring(5,6);
+  PanningServo = DATA.substring(1,4);
+  TiltingServo = DATA.substring(5,8);
+  opCode = DATA.substring(9,10);
   SP1 = PanningServo.toInt();
   ST1 = TiltingServo.toInt();
-  SP1 = map(SP1, 0, 9, 0, 180);
-  ST1 = map(ST1, 0, 9, 0, 180);  
+  SP1 = (SP1 - 100);
+  ST1 = (ST1 - 100);
 }
 
 void Movement () 
@@ -89,10 +93,10 @@ void Movement ()
     Serial.println("");
   }
   else {
-    digitalWrite(2,HIGH);
-    digitalWrite(4,HIGH);
-    digitalWrite(7,HIGH);
-    digitalWrite(8,HIGH);
+    digitalWrite(2,LOW);
+    digitalWrite(4,LOW);
+    digitalWrite(7,LOW);
+    digitalWrite(8,LOW);
     Serial.println("Robot is Still.");
     Serial.println("");
   }

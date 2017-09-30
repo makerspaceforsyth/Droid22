@@ -1,6 +1,6 @@
 //Version 1.2
 //0, 1024, 512, 768, 256;
-//Control scketch for Maskerspace Mascot
+//Control sketch for Maskerspace Mascot
 
 String DATA;
 String servoHead;
@@ -22,8 +22,10 @@ void loop()
   
   opCode = generateOpCode(FB1, LR1);
   
-  servoHead = map(SP1, 0, 1024, 0, 9);
-  servoTilt = map(ST1, 0, 1024, 0, 9);
+  int SPD1 = map(SP1, 0, 1024, 0, 180);
+  int STD1 = map(ST1, 0, 1024, 0, 180);
+  servoHead = (100 + SPD1);
+  servoTilt = (100 + STD1);
    
   DATA = "<" + servoHead + "," + servoTilt + "," + opCode + ">";
   
