@@ -14,6 +14,7 @@ const int LeftWheelPowerControl = 42;
 const int LeftWheelSpeedControl = 43;
 const int RightWheelPowerControl = 44;
 const int RightWheelSpeedControl = 45;
+const int TorsoFan = 52;
 
 #include <Servo.h>;
 
@@ -32,6 +33,8 @@ void setup()
   pinMode(LeftWheelSpeedControl, OUTPUT);  //Left wheel
   pinMode(RightWheelPowerControl, OUTPUT);  //Right wheel
   pinMode(RightWheelSpeedControl, OUTPUT);  //Right wheel
+
+  digitalWrite(TorsoFan, HIGH);
 
 }
 
@@ -109,6 +112,5 @@ void Movement ()
   }
    
   PanServo.write(90);
-  TiltServo.write(90);
- 
+  TiltServo.write(90); 
  }
