@@ -28,10 +28,10 @@ void setup()
   Serial.begin(9600);
   Serial.setTimeout(500);
   
-  pinMode(2,OUTPUT);  //Left wheel
-  pinMode(4,OUTPUT);  //Left wheel
-  pinMode(7,OUTPUT);  //Right wheel
-  pinMode(8,OUTPUT);  //Right wheel
+  pinMode(LeftWheelPowerControl, OUTPUT);  //Left wheel
+  pinMode(LeftWheelSpeedControl, OUTPUT);  //Left wheel
+  pinMode(RightWheelPowerControl, OUTPUT);  //Right wheel
+  pinMode(RightWheelSpeedControl, OUTPUT);  //Right wheel
 
 }
 
