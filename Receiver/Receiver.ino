@@ -1,4 +1,4 @@
-// Version 1.2
+// Version 1.2.1
 // Data is sent in a <###,###,F> format
 // And then broken down into substrings and converted to integers
 
