@@ -2,6 +2,8 @@
 // Data is sent in a <###,###,F> format
 // And then broken down into substrings and converted to integers
 // LOW = Forward / HIGH = Backward
+// Delay are necessary in the movement loop. 
+// Without them the code runs quicker than the pwm signal and will run the motors at full speed or stall them.
 
 String DATA;
 String PanningServo;
@@ -28,13 +30,13 @@ void setup()
   TiltServo.attach(10);
   
   Serial.begin(9600);
-  Serial.setTimeout(500);
+  Serial.setTimeout(100);
   
   pinMode(LeftWheelDirectionControl, OUTPUT);  //Left wheel
-  pinMode(LeftWheelSpeedControl, OUTPUT);  //Left wheel
-  pinMode(RightWheelDirectionControl, OUTPUT);  //Right wheel
-  pinMode(RightWheelSpeedControl, OUTPUT);  //Right wheel
-  pinMode(TorsoFan, OUTPUT);  // Torso Fan
+  pinMode(LeftWheelSpeedControl, OUTPUT);      //Left wheel
+  pinMode(RightWheelDirectionControl, OUTPUT); //Right wheel
+  pinMode(RightWheelSpeedControl, OUTPUT);     //Right wheel
+  pinMode(TorsoFan, OUTPUT);                   // Torso Fan
   
   digitalWrite(TorsoFan, HIGH);
 
@@ -71,7 +73,7 @@ void Movement ()
   if (opCode == "S")
   {
     Serial.println("Activated First Line of Movement Loop.");
-    Serial.println("Code is not functioning correctly.");
+    Serial.println("If your reading this the code is not functioning correctly.");
   }
   else if (opCode == "F")
   {
