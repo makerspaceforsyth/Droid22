@@ -11,8 +11,8 @@ int SP1;
 int ST1;
 
 const int LeftWheelPowerControl = 42;
-const int LeftWheelSpeedControl = 43;
-const int RightWheelPowerControl = 44;
+const int LeftWheelSpeedControl = 44;
+const int RightWheelPowerControl = 43;
 const int RightWheelSpeedControl = 45;
 const int TorsoFan = 52;
 
@@ -67,21 +67,25 @@ void ParseData()
 
 void Movement () 
 {
-  if (opCode.substring(0) == "F")
+  if (opCode == "S")
+  {
+    Serial.println("Activated First Line of Movement Loop.");
+  }
+  else if (opCode == "F")
+  {
+    digitalWrite(LeftWheelPowerControl, LOW);
+    digitalWrite(LeftWheelSpeedControl, HIGH);
+    digitalWrite(RightWheelPowerControl, LOW);
+    digitalWrite(RightWheelSpeedControl, HIGH);
+    Serial.println("Robot is Moving Forward.");
+    Serial.println("");
+  }
+  else if (opCode == "B")
   {
     digitalWrite(LeftWheelPowerControl, HIGH);
     digitalWrite(LeftWheelSpeedControl, HIGH);
     digitalWrite(RightWheelPowerControl, HIGH);
     digitalWrite(RightWheelSpeedControl, HIGH);
-    Serial.println("Robot is Moving Forward.");
-    Serial.println("");
-  }
-  else if (opCode.substring(0) == "B")
-  {
-    digitalWrite(LeftWheelPowerControl, HIGH);
-    digitalWrite(LeftWheelSpeedControl, LOW);
-    digitalWrite(RightWheelPowerControl, HIGH);
-    digitalWrite(RightWheelSpeedControl, LOW);
     Serial.println("Robot is Moving Backward.");
     Serial.println("");
   }
@@ -89,14 +93,14 @@ void Movement ()
   {
     digitalWrite(LeftWheelPowerControl, LOW);
     digitalWrite(LeftWheelSpeedControl, LOW);
-    digitalWrite(RightWheelPowerControl, HIGH);
+    digitalWrite(RightWheelPowerControl, LOW);
     digitalWrite(RightWheelSpeedControl, HIGH);
     Serial.println("Robot is Turning Left.");
     Serial.println("");
   }
   else if (opCode == "R")
   {
-    digitalWrite(LeftWheelPowerControl, HIGH);
+    digitalWrite(LeftWheelPowerControl, LOW);
     digitalWrite(LeftWheelSpeedControl, HIGH);
     digitalWrite(RightWheelPowerControl, LOW);
     digitalWrite(RightWheelSpeedControl, LOW);
