@@ -1,7 +1,7 @@
-// Version 1.2.1
+// Version 1.3
 // Data is sent in a <###,###,F> format
 // And then broken down into substrings and converted to integers
-//LOW = Forward / HIGH = Backward
+// LOW = Forward / HIGH = Backward
 
 String DATA;
 String PanningServo;
