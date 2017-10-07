@@ -18,6 +18,8 @@ const int LeftWheelSpeedControl = 44;
 const int RightWheelDirectionControl = 43;
 const int RightWheelSpeedControl = 45;
 const int TorsoFan = 52;
+const int BaseFan = 53;
+const int MotorControllerSwitch = 51;
 
 #include <Servo.h>;
 
@@ -27,19 +29,22 @@ void setup()
 {
 
   PanServo.attach(9);
-  TiltServo.attach(10);
+  TiltServo.attach(10); 
   
   Serial.begin(9600);
-  Serial.setTimeout(100);
+  Serial.setTimeout(100); 
   
-  pinMode(LeftWheelDirectionControl, OUTPUT);  //Left wheel
-  pinMode(LeftWheelSpeedControl, OUTPUT);      //Left wheel
-  pinMode(RightWheelDirectionControl, OUTPUT); //Right wheel
-  pinMode(RightWheelSpeedControl, OUTPUT);     //Right wheel
-  pinMode(TorsoFan, OUTPUT);                   // Torso Fan
+  pinMode(LeftWheelDirectionControl, OUTPUT);  
+  pinMode(LeftWheelSpeedControl, OUTPUT);      
+  pinMode(RightWheelDirectionControl, OUTPUT); 
+  pinMode(RightWheelSpeedControl, OUTPUT);     
+  pinMode(TorsoFan, OUTPUT);                   
+  pinMode(BaseFan, OUTPUT);                    
+  pinMode(MotorControllerSwitch, OUTPUT);      
   
-  digitalWrite(TorsoFan, HIGH);
-
+  digitalWrite(MotorControllerSwitch, HIGH);   
+  digitalWrite(TorsoFan, HIGH);                
+  digitalWrite(BaseFan, HIGH);                 
 }
 
 void loop() 
@@ -77,6 +82,7 @@ void Movement ()
   }
   else if (opCode == "F")
   {
+    digitalWrite(MotorControllerSwitch, LOW);
     digitalWrite(LeftWheelDirectionControl, LOW);
     analogWrite(LeftWheelSpeedControl, 125);
     digitalWrite(RightWheelDirectionControl, LOW);
@@ -87,6 +93,7 @@ void Movement ()
   }
   else if (opCode == "B")
   {
+    digitalWrite(MotorControllerSwitch, LOW);
     digitalWrite(LeftWheelDirectionControl, HIGH);
     analogWrite(LeftWheelSpeedControl, 125);
     digitalWrite(RightWheelDirectionControl, HIGH);
@@ -97,6 +104,7 @@ void Movement ()
   }
   else if (opCode == "L")
   {
+    digitalWrite(MotorControllerSwitch, LOW);
     digitalWrite(LeftWheelDirectionControl, LOW);
     digitalWrite(LeftWheelSpeedControl, LOW);
     digitalWrite(RightWheelDirectionControl, LOW);
@@ -107,6 +115,7 @@ void Movement ()
   }
   else if (opCode == "R")
   {
+    digitalWrite(MotorControllerSwitch, LOW);
     digitalWrite(LeftWheelDirectionControl, LOW);
     analogWrite(LeftWheelSpeedControl, 125);
     digitalWrite(RightWheelDirectionControl, LOW);
@@ -116,6 +125,7 @@ void Movement ()
     delay(100);
   }
   else {
+    digitalWrite(MotorControllerSwitch, LOW);
     digitalWrite(LeftWheelDirectionControl, LOW);
     digitalWrite(LeftWheelSpeedControl, LOW);
     digitalWrite(RightWheelDirectionControl, LOW);
@@ -124,7 +134,9 @@ void Movement ()
     Serial.println("");
     delay(100);
   }
+
+  digitalWrite(MotorControllerSwitch, HIGH); //May cause problems if wheels don't move delete this line.
    
-  PanServo.write(90);
-  TiltServo.write(90); 
+  PanServo.write(SP1);
+  TiltServo.write(ST1); 
  }
