@@ -20,6 +20,14 @@ const int RightWheelSpeedControl = 45;
 const int TorsoFan = 52;
 const int BaseFan = 53;
 const int MotorControllerSwitch = 51;
+const int pingPin1 = 31;
+const int pingPin2 = 32;
+const int pingPin3 = 33;
+const int pingPin4 = 34;
+const int ProximityWarningLED1 = 35;
+const int ProximityWarningLED2 = 36;
+const int ProximityWarningLED3 = 37;
+const int ProximityWarningLED4 = 38;
 
 #include <Servo.h>;
 
@@ -27,7 +35,6 @@ Servo PanServo, TiltServo;
 
 void setup() 
 {
-
   PanServo.attach(9);
   TiltServo.attach(10); 
   
@@ -41,13 +48,17 @@ void setup()
   pinMode(TorsoFan, OUTPUT);                   
   pinMode(BaseFan, OUTPUT);                    
   pinMode(MotorControllerSwitch, OUTPUT);      
+  pinMode(ProximityWarningLED1, OUTPUT);
+  pinMode(ProximityWarningLED2, OUTPUT);
+  pinMode(ProximityWarningLED3, OUTPUT);
+  pinMode(ProximityWarningLED4, OUTPUT);
+  
   
   digitalWrite(MotorControllerSwitch, HIGH);   
   digitalWrite(TorsoFan, HIGH);                
   digitalWrite(BaseFan, HIGH);              
   digitalWrite(LeftWheelSpeedControl, LOW);
-  digitalWrite(RightWheelSpeedControl, LOW);
-     
+  digitalWrite(RightWheelSpeedControl, LOW);     
 }
 
 void loop() 
@@ -58,6 +69,8 @@ void loop()
   ParseData();
   
   Movement();
+
+  ProximitySensors();
   
   }
 }
@@ -143,3 +156,121 @@ void Movement ()
   PanServo.write(SP1);
   TiltServo.write(ST1); 
  }
+
+ void ProximitySensors()
+ {
+  long duration1, inches1, duration2, inches2, duration3, inches3, duration4, inches4;
+
+  pinMode(pingPin1, OUTPUT);
+  digitalWrite(pingPin1, LOW);
+  delayMicroseconds(2);
+  digitalWrite(pingPin1, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(pingPin1, LOW);
+  
+  pinMode(pingPin1, INPUT);
+  duration1 = pulseIn(pingPin1, HIGH);
+
+  pinMode(pingPin2, OUTPUT);
+  digitalWrite(pingPin2, LOW);
+  delayMicroseconds(2);
+  digitalWrite(pingPin2, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(pingPin2, LOW);
+  
+  pinMode(pingPin2, INPUT);
+  duration2 = pulseIn(pingPin2, HIGH);
+
+  pinMode(pingPin3, OUTPUT);
+  digitalWrite(pingPin3, LOW);
+  delayMicroseconds(2);
+  digitalWrite(pingPin3, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(pingPin3, LOW);
+  
+  pinMode(pingPin3, INPUT);
+  duration3 = pulseIn(pingPin3, HIGH);
+
+  pinMode(pingPin4, OUTPUT);
+  digitalWrite(pingPin4, LOW);
+  delayMicroseconds(2);
+  digitalWrite(pingPin4, HIGH);
+  delayMicroseconds(5);
+  digitalWrite(pingPin4, LOW);
+
+  pinMode(pingPin4, INPUT);
+  duration4 = pulseIn(pingPin4, HIGH);
+
+  inches1 = microsecondsToInches1(duration1);
+  inches2 = microsecondsToInches2(duration2);
+  inches3 = microsecondsToInches3(duration3);
+  inches4 = microsecondsToInches4(duration4);
+  
+  Serial.print(inches1);
+  Serial.println("in, "); 
+  Serial.print(inches2);
+  Serial.println("in, "); 
+  Serial.print(inches3);
+  Serial.println("in, "); 
+  Serial.print(inches4);
+  Serial.println("in."); 
+
+  if (inches1 <= 24)
+  {
+    digitalWrite(ProximityWarningLED1, HIGH);
+  }
+  if (inches2 <= 24)
+  {
+    digitalWrite(ProximityWarningLED2, HIGH);
+  }
+  
+  if (inches3 <= 24)
+  {
+    digitalWrite(ProximityWarningLED3, HIGH);
+  }
+  
+  if (inches4 <= 24)
+  {
+    digitalWrite(ProximityWarningLED4, HIGH);
+  }
+
+  if (inches1 > 24)
+  {
+    digitalWrite(ProximityWarningLED1, LOW);
+  }
+  
+  if (inches2 > 24)
+  {
+    digitalWrite(ProximityWarningLED2, LOW);
+  }
+ 
+  if (inches3 > 24)
+  {
+    digitalWrite(ProximityWarningLED3, LOW);
+  }
+
+  if (inches4 > 24)
+  {
+    digitalWrite(ProximityWarningLED4, LOW);
+  }
+ 
+ }
+ 
+ long microsecondsToInches1(long microseconds1)
+ {
+  return microseconds1 / 74 / 2;
+ }
+long microsecondsToInches2(long microseconds2)
+ {
+  return microseconds2 / 74 / 2;
+ }
+long microsecondsToInches3(long microseconds3)
+ {
+  return microseconds3 / 74 / 2;
+ }
+long microsecondsToInches4(long microseconds4)
+ {
+  return microseconds4 / 74 / 2;
+ }
+
+
