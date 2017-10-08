@@ -1,4 +1,4 @@
-// Version 1.3
+// Version 1.3.2
 // Data is sent in a <###,###,F> format
 // And then broken down into substrings and converted to integers
 // LOW = Forward / HIGH = Backward
