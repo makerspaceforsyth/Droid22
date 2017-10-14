@@ -1,3 +1,4 @@
+
 // Version 1.3.2
 // Data is sent in a <###,###,F> format
 // And then broken down into substrings and converted to integers
@@ -27,13 +28,13 @@ Servo PanServo, TiltServo;
 
 void setup() 
 {
-
-  PanServo.attach(9);
-  TiltServo.attach(10); 
+/*
+  PanServo.attach(29);
+  TiltServo.attach(31); 
   
   Serial.begin(9600);
   Serial.setTimeout(100); 
-  
+ 
   pinMode(LeftWheelDirectionControl, OUTPUT);  
   pinMode(LeftWheelSpeedControl, OUTPUT);      
   pinMode(RightWheelDirectionControl, OUTPUT); 
@@ -41,25 +42,55 @@ void setup()
   pinMode(TorsoFan, OUTPUT);                   
   pinMode(BaseFan, OUTPUT);                    
   pinMode(MotorControllerSwitch, OUTPUT);      
-  
+ 
   digitalWrite(MotorControllerSwitch, HIGH);   
   digitalWrite(TorsoFan, HIGH);                
   digitalWrite(BaseFan, HIGH);              
   digitalWrite(LeftWheelSpeedControl, LOW);
-  digitalWrite(RightWheelSpeedControl, LOW);
-     
+  digitalWrite(RightWheelSpeedControl, LOW);*/
+  
+  testSetup();
+
 }
 
 void loop() 
 {
-  if (Serial.available() > 0)
+  /*(if (Serial.available() > 0)
   { 
   
   ParseData();
   
   Movement();
+
+  }*/
+  testLoop();
+}
+
+void testLoop()
+{
+  digitalWrite(44, HIGH);
+  digitalWrite(45, HIGH);
   
-  }
+  //analogWrite(44, 50);
+  //analogWrite(45, 50);
+  digitalWrite(51, LOW);
+  delay(50);
+  digitalWrite(42, HIGH);
+  digitalWrite(43, HIGH);
+  delay(1000);  
+}
+
+void testSetup()
+{
+  pinMode(51, OUTPUT);
+  digitalWrite(51, HIGH);
+  pinMode(42, OUTPUT);
+  pinMode(43, OUTPUT);
+  pinMode(44, OUTPUT);
+  pinMode(45, OUTPUT);
+  digitalWrite(42, LOW);
+  digitalWrite(43, LOW);
+  
 }
 
 void ParseData() 
@@ -87,9 +118,9 @@ void Movement ()
   {
     digitalWrite(MotorControllerSwitch, LOW);
     digitalWrite(LeftWheelDirectionControl, LOW);
-    analogWrite(LeftWheelSpeedControl, 125);
+    analogWrite(LeftWheelSpeedControl, 50);
     digitalWrite(RightWheelDirectionControl, LOW);
-    analogWrite(RightWheelSpeedControl, 125);
+    analogWrite(RightWheelSpeedControl, 50);
     Serial.println("Robot is Moving Forward.");
     Serial.println("");
     delay(100);
@@ -98,9 +129,9 @@ void Movement ()
   {
     digitalWrite(MotorControllerSwitch, LOW);
     digitalWrite(LeftWheelDirectionControl, HIGH);
-    analogWrite(LeftWheelSpeedControl, 125);
+    analogWrite(LeftWheelSpeedControl, 50);
     digitalWrite(RightWheelDirectionControl, HIGH);
-    analogWrite(RightWheelSpeedControl, 125);
+    analogWrite(RightWheelSpeedControl, 50);
     Serial.println("Robot is Moving Backward.");
     Serial.println("");
     delay(100);
@@ -111,7 +142,7 @@ void Movement ()
     digitalWrite(LeftWheelDirectionControl, LOW);
     digitalWrite(LeftWheelSpeedControl, LOW);
     digitalWrite(RightWheelDirectionControl, LOW);
-    analogWrite(RightWheelSpeedControl, 125);
+    analogWrite(RightWheelSpeedControl, 50);
     Serial.println("Robot is Turning Left.");
     Serial.println("");
     delay(100);
@@ -120,7 +151,7 @@ void Movement ()
   {
     digitalWrite(MotorControllerSwitch, LOW);
     digitalWrite(LeftWheelDirectionControl, LOW);
-    analogWrite(LeftWheelSpeedControl, 125);
+    analogWrite(LeftWheelSpeedControl, 50);
     digitalWrite(RightWheelDirectionControl, LOW);
     digitalWrite(RightWheelSpeedControl, LOW);
     Serial.println("Robot is Turning Right.");
