@@ -63,16 +63,18 @@ void setup()
 
 void loop() 
 {
+  
   if (Serial.available() > 0)
   { 
   
   ParseData();
   
   Movement();
-
+ 
   ProximitySensors();
-  
+
   }
+  
 }
 
 void ParseData() 
