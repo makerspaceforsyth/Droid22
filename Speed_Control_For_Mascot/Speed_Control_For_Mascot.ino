@@ -12,7 +12,7 @@ digitalWrite(43, LOW);
 
 void loop() 
 {
-analogWrite(44, 10);
+analogWrite(44, 50);
 analogWrite(45, 50);
 digitalWrite(51, LOW);
 delay(50);
