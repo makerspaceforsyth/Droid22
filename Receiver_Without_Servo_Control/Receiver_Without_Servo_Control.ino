@@ -32,7 +32,7 @@ void setup()
   //TiltServo.attach(10); 
   
   Serial.begin(9600);
-  Serial.setTimeout(100); 
+  Serial.setTimeout(1000); 
   
   pinMode(LeftWheelDirectionControl, OUTPUT);  
   pinMode(LeftWheelSpeedControl, OUTPUT);      
@@ -47,17 +47,17 @@ void setup()
   digitalWrite(BaseFan, HIGH);              
   digitalWrite(LeftWheelSpeedControl, LOW);
   digitalWrite(RightWheelSpeedControl, LOW);
-     
+   
 }
 
 void loop() 
 {
-  if (Serial.available() > 0)
-  { 
-  
-  ParseData();
-  
-  Movement();
+
+  if (Serial.available() > 0)  { 
+ 
+ParseData();
+
+Movement();
   
   }
 }
@@ -78,6 +78,8 @@ void ParseData()
 
 void Movement () 
 {
+  
+ 
   if (opCode == "S")
   {
     Serial.println("Activated First Line of Movement Loop.");
@@ -85,6 +87,8 @@ void Movement ()
   }
   else if (opCode == "F")
   {
+    //pinMode(9, INPUT);
+    digitalWrite(9, LOW);
     digitalWrite(MotorControllerSwitch, LOW);
     digitalWrite(LeftWheelDirectionControl, LOW);
     analogWrite(LeftWheelSpeedControl, 125);

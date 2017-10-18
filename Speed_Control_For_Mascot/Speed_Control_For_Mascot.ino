@@ -1,5 +1,6 @@
 void setup() 
 {
+  Serial.begin(9600);
 pinMode(51, OUTPUT);
 digitalWrite(51, HIGH);
 pinMode(42, OUTPUT);
@@ -12,6 +13,8 @@ digitalWrite(43, LOW);
 
 void loop() 
 {
+  if (Serial.available() > 0)
+  {
 analogWrite(44, 50);
 analogWrite(45, 50);
 digitalWrite(51, LOW);
@@ -19,4 +22,5 @@ delay(50);
 digitalWrite(42, HIGH);
 digitalWrite(43, HIGH);
 delay(1000);
+}
 }

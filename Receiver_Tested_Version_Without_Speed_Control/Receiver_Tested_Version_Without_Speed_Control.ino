@@ -18,15 +18,15 @@ const int RightWheelPowerControl = 43;
 const int RightWheelSpeedControl = 45;
 const int TorsoFan = 52;
 
-#include <Servo.h>;
+//#include <Servo.h>;
 
-Servo PanServo, TiltServo;
+//Servo PanServo, TiltServo;
 
 void setup() 
 {
 
-  PanServo.attach(9);
-  TiltServo.attach(10);
+  //PanServo.attach(9);
+  //TiltServo.attach(10);
   
   Serial.begin(9600);
   Serial.setTimeout(500);
@@ -38,7 +38,9 @@ void setup()
   pinMode(TorsoFan, OUTPUT);  // Torso Fan
   
   digitalWrite(TorsoFan, HIGH);
-
+  pinMode(51, OUTPUT);
+  digitalWrite(51, LOW);
+  
 }
 
 void loop() 
@@ -68,44 +70,46 @@ void ParseData()
 
 
 void Movement () 
-{
+{    
+  
   if (opCode == "S")
   {
     Serial.println("Activated First Line of Movement Loop.");
+
   }
   else if (opCode == "F")
   {
     digitalWrite(LeftWheelPowerControl, LOW);
-    digitalWrite(LeftWheelSpeedControl, HIGH);
+    analogWrite(LeftWheelSpeedControl, 75);
     digitalWrite(RightWheelPowerControl, LOW);
-    digitalWrite(RightWheelSpeedControl, HIGH);
+    analogWrite(RightWheelSpeedControl, 75);
     Serial.println("Robot is Moving Forward.");
     Serial.println("");
   }
   else if (opCode == "B")
   {
     digitalWrite(LeftWheelPowerControl, HIGH);
-    digitalWrite(LeftWheelSpeedControl, HIGH);
+    analogWrite(LeftWheelSpeedControl, 75);
     digitalWrite(RightWheelPowerControl, HIGH);
-    digitalWrite(RightWheelSpeedControl, HIGH);
+    analogWrite(RightWheelSpeedControl, 75);
     Serial.println("Robot is Moving Backward.");
     Serial.println("");
   }
   else if (opCode == "L")
   {
     digitalWrite(LeftWheelPowerControl, LOW);
-    digitalWrite(LeftWheelSpeedControl, LOW);
+    analogWrite(LeftWheelSpeedControl, LOW);
     digitalWrite(RightWheelPowerControl, LOW);
-    digitalWrite(RightWheelSpeedControl, HIGH);
+    analogWrite(RightWheelSpeedControl, 75);
     Serial.println("Robot is Turning Left.");
     Serial.println("");
   }
   else if (opCode == "R")
   {
     digitalWrite(LeftWheelPowerControl, LOW);
-    digitalWrite(LeftWheelSpeedControl, HIGH);
+    analogWrite(LeftWheelSpeedControl, 75);
     digitalWrite(RightWheelPowerControl, LOW);
-    digitalWrite(RightWheelSpeedControl, LOW);
+    analogWrite(RightWheelSpeedControl, LOW);
     Serial.println("Robot is Turning Right.");
     Serial.println("");
   }
@@ -118,6 +122,6 @@ void Movement ()
     Serial.println("");
   }
    
-  PanServo.write(90);
-  TiltServo.write(90); 
+  //PanServo.write(90);
+  //TiltServo.write(90); 
  }
