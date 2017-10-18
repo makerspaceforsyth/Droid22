@@ -28,8 +28,8 @@ void setup()
   //PanServo.attach(9);
   //TiltServo.attach(10);
   
-  Serial.begin(9600);
-  Serial.setTimeout(20);
+  Serial1.begin(9600);
+  Serial1.setTimeout(20);
   
   pinMode(LeftWheelPowerControl, OUTPUT);  //Left wheel
   pinMode(LeftWheelSpeedControl, OUTPUT);  //Left wheel
@@ -45,7 +45,7 @@ void setup()
 
 void loop() 
 {
-  if (Serial.available() > 0)
+  if (Serial1.available() > 0)
   { 
   
   ParseData();
@@ -57,8 +57,8 @@ void loop()
 
 void ParseData() 
 {
-  DATA = (Serial.readString());
-  Serial.print(DATA);
+  DATA = (Serial1.readString());
+  Serial1.print(DATA);
   PanningServo = DATA.substring(1,4);
   TiltingServo = DATA.substring(5,8);
   opCode = DATA.substring(9,10);
@@ -74,7 +74,7 @@ void Movement ()
   
   if (opCode == "S")
   {
-    Serial.println("Activated First Line of Movement Loop.");
+    Serial1.println("Activated First Line of Movement Loop.");
 
   }
   else if (opCode == "F")
@@ -83,8 +83,8 @@ void Movement ()
     analogWrite(LeftWheelSpeedControl, 75);
     digitalWrite(RightWheelPowerControl, LOW);
     analogWrite(RightWheelSpeedControl, 75);
-    Serial.println("Robot is Moving Forward.");
-    Serial.println("");
+    Serial1.println("Robot is Moving Forward.");
+    Serial1.println("");
   }
   else if (opCode == "B")
   {
@@ -92,8 +92,8 @@ void Movement ()
     analogWrite(LeftWheelSpeedControl, 75);
     digitalWrite(RightWheelPowerControl, HIGH);
     analogWrite(RightWheelSpeedControl, 75);
-    Serial.println("Robot is Moving Backward.");
-    Serial.println("");
+    Serial1.println("Robot is Moving Backward.");
+    Serial1.println("");
   }
   else if (opCode == "L")
   {
@@ -101,8 +101,8 @@ void Movement ()
     analogWrite(LeftWheelSpeedControl, 75);
     digitalWrite(RightWheelPowerControl, LOW);
     analogWrite(RightWheelSpeedControl, 75);
-    Serial.println("Robot is Turning Left.");
-    Serial.println("");
+    Serial1.println("Robot is Turning Left.");
+    Serial1.println("");
   }
   else if (opCode == "R")
   {
@@ -110,8 +110,8 @@ void Movement ()
     analogWrite(LeftWheelSpeedControl, 75);
     digitalWrite(RightWheelPowerControl, HIGH);
     analogWrite(RightWheelSpeedControl, 75);
-    Serial.println("Robot is Turning Right.");
-    Serial.println("");
+    Serial1.println("Robot is Turning Right.");
+    Serial1.println("");
   }
   else if (opCode == "N")
   {
@@ -119,8 +119,8 @@ void Movement ()
     digitalWrite(LeftWheelSpeedControl, LOW);
     digitalWrite(RightWheelPowerControl, LOW);
     digitalWrite(RightWheelSpeedControl, LOW);
-    Serial.println("Robot is Still.");
-    Serial.println("");
+    Serial1.println("Robot is Still.");
+    Serial1.println("");
   }
    
   //PanServo.write(90);
