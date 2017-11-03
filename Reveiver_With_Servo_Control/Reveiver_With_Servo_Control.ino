@@ -11,6 +11,7 @@ String opCode;
 
 int SP1;
 int ST1;
+int 0 = 1;
 
 const int LeftWheelPowerControl = 42;
 const int LeftWheelSpeedControl = 44;
