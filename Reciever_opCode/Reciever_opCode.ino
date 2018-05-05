@@ -7,12 +7,12 @@
 String DATA;
 String opCode;
 
-int LWSCN = 130;
-int RWSCN = 130;
+int LWSCN = 90;
+int RWSCN = 90;
 
-const int LeftWheelPowerControl = 6;
+const int LeftWheelPowerControl = 8;
 const int LeftWheelSpeedControl = 7;
-const int RightWheelPowerControl = 8;
+const int RightWheelPowerControl = 6;
 const int RightWheelSpeedControl = 9;
 
 void setup() 

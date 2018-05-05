@@ -1,4 +1,4 @@
-//Version 1.2
+//Version 1.3
 //0, 1024, 512, 768, 256;
 //Control sketch for Maskerspace Mascot
 
@@ -27,7 +27,7 @@ void loop()
   servoHead = (100 + SPD1);
   servoTilt = (100 + STD1);
    
-  DATA = "<" + servoHead + "," + servoTilt + "," + opCode + ">";
+  DATA = "<" + servoHead + "," + servoTilt + "," + opCode + "> ";
   
   Serial.println(DATA);
   
