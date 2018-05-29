@@ -2,7 +2,6 @@
 // Data is sent in a <###,###,F> format
 // And then broken down into substrings and converted to integers
 // LOW = Forward / HIGH = Backward
-// Do not use in its current state. It hasp a high probability of killing the motors
 
 String DATA;
 String opCode;

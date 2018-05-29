@@ -1,4 +1,4 @@
-//<F,##,##,###,###>
+//"<F,##,##,###,###> "
 
 String opCode;
 String DATA;
@@ -25,7 +25,7 @@ void loop()
   
   opCode = generateOpCode(FB1, LR1);
 
-  DATA = "<" + opCode + "," + servoHead + "," + servoTilt + ">";
+  DATA = "<" + opCode + "," + servoHead + "," + servoTilt + "> ";
 
   Serial.println(DATA);
   delay(100);

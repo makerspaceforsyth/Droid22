@@ -1,13 +1,15 @@
-// Version 1.3.4
-// Data is sent in a "<###,###,F> " format
+// Version 2.0
+// Data is sent in a "<F,##,##,###,###> " format
 // And then broken down into substrings and converted to integers
 // LOW = Forward / HIGH = Backward
 
 String DATA;
 String opCode;
+String speedRight;
+String speedLeft;
 
-int LWSCN = 90;
-int RWSCN = 90;
+int LWSCN;
+int RWSCN;
 
 const int LeftWheelPowerControl = 8;  //LWPC
 const int RightWheelPowerControl = 7; //LWSC
@@ -38,6 +40,8 @@ void loop()
   ParseData();
   
   Movement();
+
+  Serial.println(opCode + "," + speedLeft + "," + speedRight);
   
   }
 }
@@ -45,7 +49,13 @@ void loop()
 void ParseData() 
 {
   DATA = (Serial.readString());
-  opCode = DATA.substring(9,10);
+  opCode = DATA.substring(1,2);
+  speedRight = DATA.substring(3,5);
+  speedLeft = DATA.substring(6,8);
+  RWSCN = speedRight.toInt();
+  LWSCN = speedLeft.toInt();
+  RWSCN = map(RWSCN, 10, 99, 0, 100);
+  LWSCN = map(LWSCN, 10, 99, 0, 100);
 }
 
 
