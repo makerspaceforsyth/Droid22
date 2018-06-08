@@ -31,6 +31,7 @@ void setup()
   PanServo.attach(9);
   TiltServo.attach(10);
 
+  Serial.begin(9600);
   Serial1.begin(9600);
   Serial2.begin(9600);
   Serial1.setTimeout(20);
@@ -55,17 +56,21 @@ void ParseData()
 {
   DATA = (Serial1.readString());
   lengthInput = (DATA.length());
-  Final = DATA.substring(17,18);
-  if (lengthInput == "18" && Final == ">")
+  Final = DATA.substring(16,17);
+
+ if (lengthInput = 17 && Final == ">")
+// if (Final == ">")
   {
+  Serial.println(DATA);
   Serial2.println(DATA);
-  PanningServo = DATA.substring(10,13);
-  TiltingServo = DATA.substring(14,17);
+  PanningServo = DATA.substring(9,12);
+  TiltingServo = DATA.substring(13,16);
   SP1 = PanningServo.toInt();
   ST1 = TiltingServo.toInt();
   SP1 = (SP1 - 100);
   ST1 = (ST1 - 100);
   DATA2 = DATA;
+
   }
   else
   {

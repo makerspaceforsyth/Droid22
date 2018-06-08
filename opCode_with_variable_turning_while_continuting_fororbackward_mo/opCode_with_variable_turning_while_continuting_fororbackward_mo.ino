@@ -15,8 +15,9 @@ void loop()
   
   int SP1 = analogRead(A0); //Panning Servo
   int ST1 = analogRead(A1); //Tilting Servo
-  int FB1 = analogRead(A2); //Forward/Backward
-  int LR1 = analogRead(A3); //Left/Right
+  int LR1 = analogRead(A2); //Forward/Backward
+  int FB1 = analogRead(A3); //Left/Right
+
 
   int SPD1 = map(SP1, 0, 1024, 0, 180);
   int STD1 = map(ST1, 0, 1024, 0, 180);
